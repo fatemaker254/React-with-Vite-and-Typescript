@@ -21,9 +21,19 @@ import {Fragment} from "react"; //to use multiple elements in a component we can
 
 function ListGroup(){
     const items=["INDIA","AUS","ENG","SA","PAK"]
+    //if functionality this can also be added inside if and wrapped in the fragment but in this way
+    //we are not repeating the same code again anad again 
+    const message=items.length===0?<p>No items to display</p>: null; 
+    const getMessage=()=>{
+        return items.length===0?<p>no items found</p>:null;
+    }
+    //we can call this fucntion inside the return statement as well
     return (
         <>
         <h1>LIST GROUP</h1>
+        {message}
+        {/*this is another logical way*/}
+        {items.length===0 && <p>no items found</p>}
         <ul className="listgroup">
             {items.map((item)=>( //we are using the mapping method here
                 <li key={item}>{item}</li> //ket is necessary for react
