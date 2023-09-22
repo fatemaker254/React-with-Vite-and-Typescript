@@ -1,5 +1,6 @@
 
 import {Fragment} from "react"; //to use multiple elements in a component we can use fragments
+import {MouseEvent} from "react"; //to use the type of event we need
 //To create a ListGroup component
 {/* function ListGroup(){
     return (
@@ -28,6 +29,10 @@ function ListGroup(){
         return items.length===0?<p>no items found</p>:null;
     }
     //we can call this fucntion inside the return statement as well
+    //event Handler fuction
+    const handleClick=(event:MouseEvent) =>console.log(event);
+    //we will get an error if we dont import the type of event here MouseEvent
+    //this is known as type annotation
     return (
         <>
         <h1>LIST GROUP</h1>
@@ -36,10 +41,21 @@ function ListGroup(){
         {items.length===0 && <p>no items found</p>}
         <ul className="listgroup">
             {items.map((item)=>( //we are using the mapping method here
-                <li key={item}>{item}</li> //ket is necessary for react
+                <li  //we can also add another parameter in the key that is index
+                    className="list-group-item" 
+                    key={item} onClick={()=> console.log(item)}//this onclick function will show the item in the console when the items are clicked
+                //if the index parameter is added then we will be able to see the index of the item clicked
+                //key={item} onClick={(event)=> console.log(event)}//
+                //if we use the function handleClick then we can write
+                //onClick={handleClick}
+                >
+                    {item}
+                </li> //key is necessary for react
             ))}
         </ul>
         </>
     );
 }
 export default ListGroup;
+//SyntheticBaseEvent is the type of the event that is passed to the event handler.
+//It is also a wrapper around the native event and has the same properties as the native event.
