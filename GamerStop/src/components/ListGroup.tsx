@@ -1,5 +1,5 @@
 
-import {Fragment} from "react"; //to use multiple elements in a component we can use fragments
+import {Fragment, useState} from "react"; //to use multiple elements in a component we can use fragments
 import {MouseEvent} from "react"; //to use the type of event we need
 //To create a ListGroup component
 {/* function ListGroup(){
@@ -28,11 +28,22 @@ function ListGroup(){
     const getMessage=()=>{
         return items.length===0?<p>no items found</p>:null;
     }
+
+
     //we can call this fucntion inside the return statement as well
     //event Handler fuction
     const handleClick=(event:MouseEvent) =>console.log(event);
     //we will get an error if we dont import the type of event here MouseEvent
-    //this is known as type annotation
+    //this is known as type annotation.
+
+
+    //let selectedIndex=0; // this will help us to select the index of the item clicked
+    //One more method to do this is by using the useState hook
+    //Hook
+    const [selectedIndex,setSelectedIndex]= useState(-1);//this is the state hook using which we can tell react that the data can change overtime.
+    //arr[0]; //this is the variable (SelectedIndex) 
+    //arr[1]; //this is the updater function (setSelectedIndex
+    
     return (
         <>
         <h1>LIST GROUP</h1>
@@ -43,11 +54,22 @@ function ListGroup(){
             {items.map((item)=>( //we are using the mapping method here
                 <li  //we can also add another parameter in the key that is index
                     className="list-group-item" 
-                    key={item} onClick={()=> console.log(item)}//this onclick function will show the item in the console when the items are clicked
+                    //if we wantt that the options when selected will change colour then the following code is necessary
+                    //className={
+                        //selectedIndex===index
+                        //?"list-group-item active"
+                        //:"list-group-item"
+                    //}
+                    key={item} 
+                    onClick={()=> console.log(item)}//this onclick function will show the item in the console when the items are clicked
                 //if the index parameter is added then we will be able to see the index of the item clicked
                 //key={item} onClick={(event)=> console.log(event)}//
                 //if we use the function handleClick then we can write
-                //onClick={handleClick}
+                //onClick={handleClick} 
+
+                //if we want to add a colour to the selected then 
+                //onClick={()=>setSelectedIndex(index)} //this will set the index of the item clicked 
+                //by the above code we will get the item coloured when it is selected
                 >
                     {item}
                 </li> //key is necessary for react
@@ -59,3 +81,4 @@ function ListGroup(){
 export default ListGroup;
 //SyntheticBaseEvent is the type of the event that is passed to the event handler.
 //It is also a wrapper around the native event and has the same properties as the native event.
+//Hook is a special function that lets you “hook into” React features. For example, useState is a Hook 

@@ -10,3 +10,4 @@ Code snippets for all the React concepts.
 4. if functionality
 5. Event Handling
 6. Type annotation
+7. Managing State
