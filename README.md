@@ -13,3 +13,4 @@ Code snippets for all the React concepts.
 7. Managing State
 8. Props
 9. Passing functions using Props
+10. Passsing Children
