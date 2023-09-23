@@ -19,9 +19,14 @@ import {MouseEvent} from "react"; //to use the type of event we need
 } */}
 //we can also use fragments by just giving <> </> instead of <Fragment> </Fragment>
 //we are using <> and mapping as follows
-
-function ListGroup(){
-    const items=["INDIA","AUS","ENG","SA","PAK"]
+interface Props{
+    items:string[]; //this is the array of strings 
+    heading:string;
+    //(items:string) => void
+    onSelectItem:(item:string)=>void; //this is the function that will be 
+}
+function ListGroup({items,heading,onSelectItem}:Props){
+    //const items=["INDIA","AUS","ENG","SA","PAK"]
     //if functionality this can also be added inside if and wrapped in the fragment but in this way
     //we are not repeating the same code again anad again 
     const message=items.length===0?<p>No items to display</p>: null; 
@@ -46,7 +51,8 @@ function ListGroup(){
     
     return (
         <>
-        <h1>LIST GROUP</h1>
+        //rendering the heading and the message
+        <h1>{heading}</h1>
         {message}
         {/*this is another logical way*/}
         {items.length===0 && <p>no items found</p>}
@@ -70,6 +76,12 @@ function ListGroup(){
                 //if we want to add a colour to the selected then 
                 //onClick={()=>setSelectedIndex(index)} //this will set the index of the item clicked 
                 //by the above code we will get the item coloured when it is selected
+                
+                //for Props
+                //onClick={()=> {
+                    //setSelectedIndex(index);
+                    //onSelectItem(item);
+                //}}
                 >
                     {item}
                 </li> //key is necessary for react
